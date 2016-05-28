@@ -1,5 +1,3 @@
-# https://www.foreignlaborcert.doleta.gov/performancedata.cfm
-# The following case disclosure files cover determinations issued between October 1, 2015 through March 31, 2016. A
 import rows
 from io import BytesIO
 #import requests
@@ -7,11 +5,8 @@ from io import BytesIO
 #xlsx = requests.get(url).content  # Download XLSX data
 #visas_data = rows.import_from_xlsx(BytesIO(xlsx))
 
-#visas_data = rows.import_from_xls('data/PERM_Disclosure_Data_FY16_Q2.xls')
-
 print '------\nReading file\n-----'
 filename = 'data/PERM_Disclosure_Data_FY16_Q2_shorter.csv' # shorter csv
-filedata = None
 f = open(filename,'r')
 filedata = f.read()
 f.close()
