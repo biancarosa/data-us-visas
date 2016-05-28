@@ -40,3 +40,25 @@ print 'Brazil vs Other countries: {} vs {}'.format(len(brazil), len(other_countr
 brazil_certified = filter(lambda row: row.case_status == 'Certified' and  row.country_of_citizenship == 'BRAZIL',  visas_data)
 brazil_denied = filter(lambda row: row.case_status == 'Denied' and row.country_of_citizenship != 'BRAZIL',  visas_data)
 print 'Brazil Certified vs Brazil Denied: {} vs {}'.format(len(brazil_certified), len(brazil_denied))
+
+import matplotlib.pyplot as plt
+plt.rcdefaults()
+import numpy as np
+import matplotlib.pyplot as plt
+
+certified_by_country = {}
+for row in visas_data:
+    if (row.case_status == 'Certified'):
+        if not certified_by_country.get(row.country_of_citizenship):
+            certified_by_country[row.country_of_citizenship] = 0
+        certified_by_country[row.country_of_citizenship] += 1
+
+country = certified_by_country.keys()
+y_pos = certified_by_country.values()
+arange = np.arange(len(country))
+plt.barh(arange, y_pos, align='center', alpha=0.4)
+plt.yticks(arange, country)
+plt.xlabel('Certifications approved')
+plt.title('Foreign Labor Certification approved grouped by country')
+
+plt.savefig('plot.png')
